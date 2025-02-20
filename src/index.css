@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 35%;
+    --input: 0 0% 35%;
+    --ring: 0 0% 0%;
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 35%;
+    --input: 0 0% 35%;
+    --ring: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Nothing Phone Inspired Theme */
+.nothing-dots {
+  background-image: radial-gradient(circle, rgb(128 128 128 / 0.35) 1px, transparent 1px);
+  background-size: 18px 18px;
+  background-position: center;
+}
+
+.nothing-glow {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nothing-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    rgb(128 128 128 / 0.5),
+    rgb(128 128 128 / 0.3)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nothing-glow:hover::before {
+  opacity: 1;
+}
+
+/* Monospace font for Nothing Phone aesthetic */
+@font-face {
+  font-family: 'Nothing';
+  src: local('Courier New');
+  font-display: swap;
+}
+
+.font-nothing {
+  font-family: 'Nothing', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Smooth animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* System status bar */
+.system-status {
+  @apply fixed bottom-4 left-1/2 -translate-x-1/2 text-xs text-muted-foreground font-nothing;
+  text-transform: uppercase;
+}
+
+/* Card styles */
+.card-nothing {
+  @apply bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 
+         border border-border/50 nothing-glow animate-fade-in;
+}
+
+/* Button styles */
+.button-nothing {
+  @apply nothing-glow font-nothing text-xs tracking-wider uppercase
+         transition-all duration-300 hover:bg-accent;
+}
+
+/* Input styles */
+.input-nothing {
+  @apply bg-background/80 border-border/50 nothing-glow font-nothing
+         focus:ring-1 focus:ring-foreground/20;
+}
+
+/* Page container styles */
+.page-container {
+  @apply container max-w-md mx-auto pt-20 pb-24 px-4 min-h-screen nothing-dots;
+}
+
+/* Section header styles */
+.section-header {
+  @apply text-2xl font-nothing mb-6 tracking-tight;
+}
+
+/* Card grid styles */
+.card-grid {
+  @apply grid gap-4;
+}
+
+/* Status indicator styles */
+.status-indicator {
+  @apply inline-flex items-center gap-2 text-xs font-nothing text-muted-foreground;
+}
+
+/* Action button styles */
+.action-button {
+  @apply button-nothing flex items-center gap-2;
+}
+
+/* List item styles */
+.list-item {
+  @apply card-nothing p-4 flex items-center justify-between;
+}
+
+/* Form group styles */
+.form-group {
+  @apply space-y-2;
+}
+
+/* Label styles */
+.form-label {
+  @apply font-nothing text-xs uppercase;
+}
+
+/* Chart container styles */
+.chart-container {
+  @apply card-nothing p-4 h-[300px];
+}
